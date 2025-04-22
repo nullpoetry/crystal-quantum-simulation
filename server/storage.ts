@@ -63,4 +63,14 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+import { MongoStorage } from './mongoStorage';
+
+// Create instances of both storage implementations
+const memStorage = new MemStorage();
+const mongoStorage = new MongoStorage();
+
+// Determine which storage to use based on environment variable or other configuration
+// By default, use MongoDB in production and memory storage in development
+const useMongoDb = process.env.NODE_ENV === 'production' || process.env.USE_MONGODB === 'true';
+
+export const storage = useMongoDb ? mongoStorage : memStorage;
