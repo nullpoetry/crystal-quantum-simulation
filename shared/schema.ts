@@ -29,6 +29,9 @@ export const insertSimulationSchema = createInsertSchema(simulations).pick({
   name: true,
   data: true,
   createdAt: true,
+}).extend({
+  // Ensuring userId can be null
+  userId: z.number().nullable().optional(),
 });
 
 export type InsertSimulation = z.infer<typeof insertSimulationSchema>;

@@ -47,7 +47,14 @@ export class MemStorage implements IStorage {
   
   async saveSimulation(insertSimulation: InsertSimulation): Promise<Simulation> {
     const id = this.currentSimulationId++;
-    const simulation: Simulation = { ...insertSimulation, id };
+    // Ensure userId is not undefined (default to null if it's not provided)
+    const userId = insertSimulation.userId === undefined ? null : insertSimulation.userId;
+    
+    const simulation: Simulation = { 
+      ...insertSimulation, 
+      userId,
+      id 
+    };
     this.simulations.set(id, simulation);
     return simulation;
   }
