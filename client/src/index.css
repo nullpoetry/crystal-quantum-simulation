@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 20 14.3% 4.1%;
+  --muted: 60 4.8% 95.9%;
+  --muted-foreground: 25 5.3% 44.7%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 20 14.3% 4.1%;
+  --card: 0 0% 100%;
+  --card-foreground: 20 14.3% 4.1%;
+  --border: 20 5.9% 90%;
+  --input: 20 5.9% 90%;
+  --primary: 207 90% 54%;
+  --primary-foreground: 211 100% 99%;
+  --secondary: 60 4.8% 95.9%;
+  --secondary-foreground: 24 9.8% 10%;
+  --accent: 60 4.8% 95.9%;
+  --accent-foreground: 24 9.8% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 60 9.1% 97.8%;
+  --ring: 20 14.3% 4.1%;
+  --radius: 0.5rem;
+  
+  /* Quantum theme colors */
+  --quantum-dark: 0 0% 7%;
+  --quantum-panel: 0 0% 12%;
+  --quantum-accent: 163 95% 43%;
+  --quantum-purple: 271 68% 59%;
+  --quantum-blue: 217 100% 62%;
+  --quantum-highlight: 336 100% 50%;
+  --quantum-muted: 0 0% 29%;
+}
+
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --primary: 207 90% 54%;
+  --primary-foreground: 211 100% 99%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 240 4.9% 83.9%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+.bg-quantum-dark {
+  background-color: hsl(var(--quantum-dark));
+}
+
+.bg-quantum-panel {
+  background-color: hsl(var(--quantum-panel));
+}
+
+.bg-quantum-accent {
+  background-color: hsl(var(--quantum-accent));
+}
+
+.bg-quantum-purple {
+  background-color: hsl(var(--quantum-purple));
+}
+
+.bg-quantum-blue {
+  background-color: hsl(var(--quantum-blue));
+}
+
+.bg-quantum-highlight {
+  background-color: hsl(var(--quantum-highlight));
+}
+
+.bg-quantum-muted {
+  background-color: hsl(var(--quantum-muted));
+}
+
+.border-quantum-muted {
+  border-color: hsl(var(--quantum-muted));
+}
+
+.text-quantum-accent {
+  color: hsl(var(--quantum-accent));
+}
+
+.text-quantum-purple {
+  color: hsl(var(--quantum-purple));
+}
+
+.text-quantum-blue {
+  color: hsl(var(--quantum-blue));
+}
+
+.from-quantum-dark {
+  --tw-gradient-from: hsl(var(--quantum-dark)) var(--tw-gradient-from-position);
+  --tw-gradient-to: hsl(var(--quantum-dark) / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+/* Animation keyframes */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-spin {
+  animation: spin 20s linear infinite;
+}
