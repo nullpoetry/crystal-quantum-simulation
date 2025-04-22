@@ -2,6 +2,10 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { connectToDatabase, closeConnection } from "./mongodb";
+import * as dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.config();
 
 const app = express();
 app.use(express.json());
@@ -39,13 +43,8 @@ app.use((req, res, next) => {
 
 (async () => {
   try {
-    // If MongoDB is enabled, connect to the database
-    if (process.env.USE_MONGODB === 'true' || process.env.NODE_ENV === 'production') {
-      await connectToDatabase();
-      log('MongoDB connection established');
-    } else {
-      log('Using in-memory storage (MongoDB connection not enabled)');
-    }
+    // For now, always use in-memory storage to avoid connection issues
+    log('Using in-memory storage')
     
     const server = await registerRoutes(app);
 
@@ -80,14 +79,12 @@ app.use((req, res, next) => {
     
     // Graceful shutdown
     process.on('SIGINT', async () => {
-      log('SIGINT signal received: closing MongoDB connection');
-      await closeConnection();
+      log('SIGINT signal received: closing server');
       process.exit(0);
     });
     
     process.on('SIGTERM', async () => {
-      log('SIGTERM signal received: closing MongoDB connection');
-      await closeConnection();
+      log('SIGTERM signal received: closing server');
       process.exit(0);
     });
     

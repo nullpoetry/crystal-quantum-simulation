@@ -76,8 +76,5 @@ import { MongoStorage } from './mongoStorage';
 const memStorage = new MemStorage();
 const mongoStorage = new MongoStorage();
 
-// Determine which storage to use based on environment variable or other configuration
-// By default, use MongoDB in production and memory storage in development
-const useMongoDb = process.env.NODE_ENV === 'production' || process.env.USE_MONGODB === 'true';
-
-export const storage = useMongoDb ? mongoStorage : memStorage;
+// Always use in-memory storage for now
+export const storage = memStorage;
